@@ -1,30 +1,227 @@
 /** @format */
-header {
-  padding: 20px;
+@mixin forMobile {
+  @media screen and (max-width: 600px) {
+    @content;
+  }
+}
+* {
+  font-family: Arial, Helvetica, sans-serif;
 }
 .light {
   background-color: #fff;
-  color: #000;
+  color: #101416;
 }
+
 .dark {
-  background-color: #000;
+  background-color: #101416;
   color: #fff;
 }
-.changeMode {
-  padding: 10px;
 
+nav {
+  padding: 18px 0;
+  // background-color: #101416;
+}
+
+svg {
+  &.active {
+    path:nth-child(1) {
+      fill: #101416;
+    }
+    path:nth-child(5) {
+      fill: #101416;
+    }
+    path:nth-child(6) {
+      fill: #101416;
+    }
+  }
+}
+
+.nav {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.menu {
+  @include forMobile() {
+    padding: 20px;
+    position: fixed;
+    z-index: 10;
+    top: -100%;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s linear;
+
+    background-color: rgba($color: #fff, $alpha: 0.5);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    &.activeForBg {
+      // background-color: rgba($color: #000, $alpha: 0.5);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+    }
+    &.active {
+      top: 0;
+    }
+  }
+  .closeMenuBtn {
+    display: none;
+    @include forMobile() {
+      position: absolute;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: transparent;
+      border: none;
+      font-size: 48px;
+      color: #fff;
+      &.active {
+        color: #000000;
+      }
+    }
+  }
+}
+
+.menu__ul {
+  margin: 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 27px;
+  @include forMobile() {
+    width: 100%;
+    margin: 0;
+    flex-direction: column;
+  }
+  &-item {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 154%;
+    letter-spacing: 0.28px;
+    text-transform: uppercase;
+    cursor: pointer;
+    &:last-child {
+      display: none;
+      @include forMobile() {
+        display: block;
+      }
+    }
+    @include forMobile() {
+      text-align: center;
+      width: 100%;
+      font-size: 28px;
+    }
+  }
+}
+.btns {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  button {
+    cursor: pointer;
+  }
+}
+
+.openMenu {
+  display: none;
+  width: 30px;
+  height: 30px;
   background-color: transparent;
   border: none;
-  cursor: pointer;
-  i {
-    font-size: 48px;
+  font-size: 30px;
+  @include forMobile() {
+    display: block;
   }
-  &.light {
-    background-color: #fff;
-    color: #000;
+}
+
+.openModal {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid rgba($color: #000000, $alpha: 0.5);
+  background-color: transparent;
+  font-size: 18px;
+  cursor: pointer;
+  &.desktop {
+    @include forMobile() {
+      display: none;
+    }
+  }
+  @include forMobile() {
+    width: 100%;
+    font-size: 28px;
   }
   &.dark {
-    background-color: #000;
-    color: #fff;
+    border: 1px solid rgba($color: #fff, $alpha: 0.5);
+  }
+}
+.changeMode {
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  border: none;
+  font-size: 30px;
+
+  .fa-sun {
+    color: gold !important;
+  }
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  background-color: rgba($color: #000000, $alpha: 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: scale(0);
+
+  &.active {
+    transform: scale(1);
+  }
+  &-item {
+    width: 400px;
+    height: 200px;
+    background-color: #fff;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    transform: scale(0);
+    transition: all 0.5s ease;
+    &.active {
+      transform: scale(1);
+    }
+    h3 {
+      font-size: 36px;
+      color: #000000;
+    }
+
+    button {
+      padding: 10px;
+      font-size: 28px;
+      color: #fff;
+      background: rgb(131, 58, 180);
+      background: linear-gradient(
+        40deg,
+        rgba(131, 58, 180, 1) 0%,
+        rgba(252, 176, 69, 1) 100%
+      );
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+    }
   }
 }
