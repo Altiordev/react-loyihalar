@@ -1,227 +1,363 @@
 /** @format */
-@mixin forMobile {
-  @media screen and (max-width: 600px) {
-    @content;
-  }
-}
+
 * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
   font-family: Arial, Helvetica, sans-serif;
 }
-.light {
-  background-color: #fff;
-  color: #101416;
+.container {
+  max-width: 1440px;
+  padding: 0px 20px;
+  margin: 0 auto;
 }
 
-.dark {
-  background-color: #101416;
-  color: #fff;
+h1 {
+  margin: 25px 0;
+  color: #324960;
+  text-align: center;
+
+  font-size: 48px;
 }
 
-nav {
-  padding: 18px 0;
-  // background-color: #101416;
-}
-
-svg {
-  &.active {
-    path:nth-child(1) {
-      fill: #101416;
-    }
-    path:nth-child(5) {
-      fill: #101416;
-    }
-    path:nth-child(6) {
-      fill: #101416;
-    }
-  }
-}
-
-.nav {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.menu {
-  @include forMobile() {
-    padding: 20px;
-    position: fixed;
-    z-index: 10;
-    top: -100%;
-    right: 0;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.5s linear;
-
-    background-color: rgba($color: #fff, $alpha: 0.5);
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(5px);
-    &.activeForBg {
-      // background-color: rgba($color: #000, $alpha: 0.5);
-      -webkit-backdrop-filter: blur(10px);
-      backdrop-filter: blur(10px);
-    }
-    &.active {
-      top: 0;
-    }
-  }
-  .closeMenuBtn {
-    display: none;
-    @include forMobile() {
-      position: absolute;
-      bottom: 15px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: transparent;
-      border: none;
-      font-size: 48px;
-      color: #fff;
-      &.active {
-        color: #000000;
-      }
-    }
-  }
-}
-
-.menu__ul {
-  margin: 0 20px;
-  display: flex;
-  align-items: center;
-  gap: 27px;
-  @include forMobile() {
-    width: 100%;
-    margin: 0;
-    flex-direction: column;
-  }
-  &-item {
-    font-weight: 400;
-    font-size: 13px;
-    line-height: 154%;
-    letter-spacing: 0.28px;
-    text-transform: uppercase;
-    cursor: pointer;
-    &:last-child {
-      display: none;
-      @include forMobile() {
-        display: block;
-      }
-    }
-    @include forMobile() {
-      text-align: center;
-      width: 100%;
-      font-size: 28px;
-    }
-  }
-}
-.btns {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  button {
-    cursor: pointer;
-  }
-}
-
-.openMenu {
-  display: none;
-  width: 30px;
-  height: 30px;
-  background-color: transparent;
+.addUser {
+  margin-bottom: 20px;
+  padding: 20px;
+  font-size: 22px;
   border: none;
-  font-size: 30px;
-  @include forMobile() {
-    display: block;
-  }
+  background-color: gold;
+  color: #fff;
+  cursor: pointer;
 }
 
-.openModal {
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid rgba($color: #000000, $alpha: 0.5);
-  background-color: transparent;
-  font-size: 18px;
-  cursor: pointer;
-  &.desktop {
-    @include forMobile() {
-      display: none;
-    }
-  }
-  @include forMobile() {
-    width: 100%;
+@media screen and (max-width: 700px) {
+  h1 {
     font-size: 28px;
   }
-  &.dark {
-    border: 1px solid rgba($color: #fff, $alpha: 0.5);
+
+  .addUser {
+    padding: 10px;
+    font-size: 18px;
   }
 }
-.changeMode {
-  width: 30px;
-  height: 30px;
-  background-color: transparent;
-  border: none;
-  font-size: 30px;
-
-  .fa-sun {
-    color: gold !important;
-  }
-}
-
 .modal {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 999;
   width: 100%;
   height: 100%;
-  background-color: rgba($color: #000000, $alpha: 0.7);
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: rgba($color: #000000, $alpha: 0.7);
   transform: scale(0);
-
   &.active {
     transform: scale(1);
   }
-  &-item {
-    width: 400px;
-    height: 200px;
-    background-color: #fff;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    transform: scale(0);
-    transition: all 0.5s ease;
-    &.active {
-      transform: scale(1);
-    }
-    h3 {
-      font-size: 36px;
-      color: #000000;
-    }
+}
 
-    button {
-      padding: 10px;
-      font-size: 28px;
-      color: #fff;
-      background: rgb(131, 58, 180);
-      background: linear-gradient(
-        40deg,
-        rgba(131, 58, 180, 1) 0%,
-        rgba(252, 176, 69, 1) 100%
-      );
-      border-radius: 5px;
-      border: none;
-      cursor: pointer;
-    }
+.modal-item {
+  margin: 0 20px;
+  position: relative;
+  z-index: 9999;
+  transform: scale(0);
+  transition: all 0.5s ease;
+  width: 500px;
+  height: 500px;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &.active {
+    transform: scale(1);
+  }
+
+  i {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    color: #000000;
+    font-size: 30px;
+  }
+}
+
+.form {
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  input {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 10px;
+  }
+
+  button {
+    padding: 25px;
+    border-radius: 10px;
+    color: #fff;
+    background-color: #4fc3a1;
+    font-size: 18px;
+    border: none;
+  }
+}
+
+@-webkit-keyframes lqt {
+  0%,
+  100% {
+    background-image: linear-gradient(#4fc3a1 40px, transparent 0);
+    background-position: 0% 0px;
+  }
+  50% {
+    background-image: linear-gradient(#4fc3a1 40px, transparent 0);
+    background-position: 0% 40px;
+  }
+  50.1% {
+    background-image: linear-gradient(#4fc3a1 40px, transparent 0);
+    background-position: 0% -40px;
+  }
+}
+
+@keyframes lqt {
+  0%,
+  100% {
+    background-image: linear-gradient(#4fc3a1 40px, transparent 0);
+    background-position: 0% 0px;
+  }
+  50% {
+    background-image: linear-gradient(#4fc3a1 40px, transparent 0);
+    background-position: 0% 40px;
+  }
+  50.1% {
+    background-image: linear-gradient(#4fc3a1 40px, transparent 0);
+    background-position: 0% -40px;
+  }
+}
+
+@-webkit-keyframes lqb {
+  0% {
+    background-image: linear-gradient(#4fc3a1 40px, transparent 0);
+    background-position: 0 40px;
+  }
+  100% {
+    background-image: linear-gradient(#4fc3a1 40px, transparent 0);
+    background-position: 0 -40px;
+  }
+}
+
+@keyframes lqb {
+  0% {
+    background-image: linear-gradient(#4fc3a1 40px, transparent 0);
+    background-position: 0 40px;
+  }
+  100% {
+    background-image: linear-gradient(#4fc3a1 40px, transparent 0);
+    background-position: 0 -40px;
+  }
+}
+
+@-webkit-keyframes spinx {
+  0%,
+  49% {
+    transform: rotate(0deg);
+    background-position: 50% 36px;
+  }
+  51%,
+  98% {
+    transform: rotate(180deg);
+    background-position: 50% 4px;
+  }
+  100% {
+    transform: rotate(360deg);
+    background-position: 50% 36px;
+  }
+}
+
+@keyframes spinx {
+  0%,
+  49% {
+    transform: rotate(0deg);
+    background-position: 50% 36px;
+  }
+  51%,
+  98% {
+    transform: rotate(180deg);
+    background-position: 50% 4px;
+  }
+  100% {
+    transform: rotate(360deg);
+    background-position: 50% 36px;
+  }
+}
+
+.input-wrapper {
+  margin: 0 auto;
+  margin-bottom: 25px;
+  padding: 10px;
+  max-width: 800px;
+  background-color: #324960;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.input-wrapper input {
+  padding: 5px;
+  border: none;
+}
+
+.input-wrapper button {
+  padding: 5px;
+  border: none;
+  background-color: #4fc3a1;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.table-wrapper {
+  margin: 10px 70px 70px;
+  box-shadow: 0px 35px 50px rgba(0, 0, 0, 0.2);
+}
+
+.fl-table {
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: normal;
+  border: none;
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 100%;
+  white-space: nowrap;
+  background-color: white;
+}
+
+.fl-table td,
+.fl-table th {
+  text-align: center;
+  padding: 8px;
+}
+
+.fl-table td {
+  border-right: 1px solid #f8f8f8;
+  font-size: 12px;
+}
+
+.fl-table thead th {
+  color: #ffffff;
+  background: #4fc3a1;
+}
+
+.fl-table thead th:nth-child(odd) {
+  color: #ffffff;
+  background: #324960;
+}
+
+.fl-table tr:nth-child(even) {
+  background: #f8f8f8;
+}
+
+tbody tr td button {
+  padding: 5px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+#btn_edit {
+  background-color: #324960;
+}
+
+#btn_del {
+  background-color: #4fc3a1;
+}
+
+.td_id {
+  background-color: #324960 !important;
+  color: #fff !important;
+}
+
+/* Responsive */
+
+@media (max-width: 767px) {
+  .input-wrapper {
+    max-width: 400px;
+    flex-direction: column;
+  }
+  .input-wrapper input {
+    width: 100%;
+  }
+  .fl-table {
+    display: block;
+    width: 100%;
+  }
+  .table-wrapper {
+    margin: 0;
+  }
+  .table-wrapper:before {
+    content: "Scroll horizontally >";
+    display: block;
+    text-align: right;
+    font-size: 11px;
+    color: white;
+    padding: 0 0 10px;
+  }
+  .fl-table thead,
+  .fl-table tbody,
+  .fl-table thead th {
+    display: block;
+  }
+  .fl-table thead th:last-child {
+    border-bottom: none;
+  }
+  .fl-table thead {
+    float: left;
+  }
+  .fl-table tbody {
+    width: auto;
+    // position: relative;
+    overflow-x: auto;
+    // z-index: 1;
+  }
+  .fl-table td,
+  .fl-table th {
+    padding: 20px 0.625em 0.625em 0.625em;
+    height: 60px;
+    vertical-align: middle;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 120px;
+    font-size: 13px;
+    text-overflow: ellipsis;
+  }
+  .fl-table thead th {
+    text-align: left;
+    border-bottom: 1px solid #f7f7f9;
+  }
+  .fl-table tbody tr {
+    display: table-cell;
+  }
+  .fl-table tbody tr:nth-child(odd) {
+    background: none;
+  }
+  .fl-table tr:nth-child(even) {
+    background: transparent;
+  }
+  .fl-table tr td:nth-child(odd) {
+    background: #f8f8f8;
+    border-right: 1px solid #e6e4e4;
+  }
+  .fl-table tr td:nth-child(even) {
+    border-right: 1px solid #e6e4e4;
+  }
+  .fl-table tbody td {
+    display: block;
+    text-align: center;
   }
 }
