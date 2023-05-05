@@ -8,7 +8,7 @@ const Cards = () => {
   const url = "https://api.spaceflightnewsapi.net/v3/articles";
   const [data, setData] = useState([]);
 
-  const fetchData = async () => {
+  const fetchData = async (url) => {
     try {
       const response = await axios.get(url);
       setData(response.data);
@@ -18,8 +18,8 @@ const Cards = () => {
   };
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    fetchData(url);
+  }, [url]);
 
   const changeNormTime = (data) => {
     const time = data.slice(0, 10);
