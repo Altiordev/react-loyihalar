@@ -10,14 +10,14 @@ const Card = () => {
 
   const url = `https://api.spaceflightnewsapi.net/v3/articles/${id}`;
 
-  const fetchSingleData = async () => {
+  const fetchSingleData = async (url) => {
     const response = await axios.get(url);
     setSingleData(response.data);
   };
 
   useEffect(() => {
-    fetchSingleData();
-  }, []);
+    fetchSingleData(url);
+  }, [url]);
 
   console.log(singleData);
 
