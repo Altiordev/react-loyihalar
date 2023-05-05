@@ -1,9 +1,9 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Cards from './components/Cards';
-import Card from './components/Card';
 import { Suspense } from 'react';
 import Loader from './components/Loader/Loader';
+import Countries from './components/Countries';
+import Country from './components/Country';
 
 
 function App() {
@@ -11,8 +11,8 @@ function App() {
     <Suspense fallback={<Loader/>}>
       <BrowserRouter>
           <Routes>
-            <Route path="/"  element={<Cards/> }/>
-            <Route path="/:id"  element={<Card/>}/>
+            <Route path="/"  element={<Countries/> }/>
+            <Route path="/name/:countryName"  element={<Country/>}/>
           </Routes>     
       </BrowserRouter>   
     </Suspense>
