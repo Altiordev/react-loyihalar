@@ -1,12 +1,21 @@
 import './App.css';
-import Header from './components/Header/Header';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Cards from './components/Cards';
+import Card from './components/Card';
+import { Suspense } from 'react';
+import Loader from './components/Loader/Loader';
 
 
 function App() {
   return (
-    <div className="App">
-      <Header/>      
-    </div>
+    <Suspense fallback={<Loader/>}>
+      <BrowserRouter>
+          <Routes>
+            <Route path="/"  element={<Cards/> }/>
+            <Route path="/:id"  element={<Card/>}/>
+          </Routes>     
+      </BrowserRouter>   
+    </Suspense>
   );
 }
 
