@@ -1,57 +1,42 @@
 /** @format */
-import { useState, useEffect } from "react";
-import axios from "axios";
-import { NavLink } from "react-router-dom";
+import { Component } from "react";
 import "../components/countries.scss";
 
-const Countries = () => {
-  const url = "https://restcountries.com/v3.1/all";
-  const [data, setData] = useState([]);
+class ExampleClass extends Component {
+  constructor() {
+    super();
 
-  // const handleUzb = () => {
-  //   setUrl("https://restcountries.com/v3.1/name/uzbekistan");
-  // };
-  // const handleGermany = () => {
-  //   setUrl("https://restcountries.com/v3.1/name/germany");
-  // };
-  // const handleAll = () => {
-  //   setUrl("https://restcountries.com/v3.1/all");
-  // };
+    this.state = {
+      count: 0,
+    };
 
-  const fetchData = async (url) => {
-    try {
-      const response = await axios.get(url);
-      setData(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+    this.handlePlus = this.plusCount.bind(this);
+    this.handleMinus = this.minusCount.bind(this);
+  }
 
-  useEffect(() => {
-    fetchData(url);
-  }, [url]);
+  plusCount() {
+    this.setState((prev) => ({
+      count: prev.count + 1,
+    }));
+  }
 
-  return (
-    <header>
+  minusCount() {
+    this.setState((prev) => ({
+      count: prev.count - 1,
+    }));
+  }
+
+  render() {
+    return (
       <div className='container'>
-        <div className='info'>
-          <span>Click on the flag for more information!</span>
-        </div>
-        <div className='box'>
-          {data.map((countries, index) => (
-            <div key={index} className='card'>
-              <NavLink to={`/name/${countries.name.common.toLowerCase()}`}>
-                <img src={countries.flags.svg} alt={countries.flags.alt} />
-              </NavLink>
-              <h2>{countries.name.common}</h2>
-              <h4>Capital: {countries.capital}</h4>
-              <h5>Population: {countries.population}</h5>
-            </div>
-          ))}
+        {this.state.count}
+        <div className='btns'>
+          <button onClick={this.handlePlus}>Plus</button>
+          <button onClick={this.handleMinus}>Minus</button>
         </div>
       </div>
-    </header>
-  );
-};
+    );
+  }
+}
 
-export default Countries;
+export default ExampleClass;
