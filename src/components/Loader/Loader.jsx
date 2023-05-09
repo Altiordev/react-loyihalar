@@ -1,10 +1,9 @@
 /** @format */
-
 import "./loader.scss";
 
 const Loader = () => {
   return (
-    <div className='modal_loader'>
+    <div className='modal__loader'>
       <span className='loader'></span>
     </div>
   );
