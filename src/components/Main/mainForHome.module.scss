@@ -1,4 +1,4 @@
-/** @format */
+/* @format */
 main {
   width: 700px;
   border-left: 1px solid rgba(196, 196, 196, 1);
@@ -22,8 +22,8 @@ main {
   border-bottom: 1px solid rgba(196, 196, 196, 1);
   display: flex;
   gap: 15px;
-  justify-content: start;
-  align-items: start;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 .user__logo {
   width: 60px;

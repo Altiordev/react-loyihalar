@@ -1,5 +1,5 @@
 /** @format */
-// import { useState, useEffect } from "react";
+
 import Style from "./mainForHome.module.scss";
 
 const MainForHome = () => {
