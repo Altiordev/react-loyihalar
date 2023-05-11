@@ -2,7 +2,7 @@
 
 import Style from "./mainForHome.module.scss";
 
-const MainForHome = () => {
+const MainForProfile = () => {
   const name = JSON.parse(localStorage.getItem("userName"));
 
   return (
@@ -15,4 +15,4 @@ const MainForHome = () => {
   );
 };
 
-export default MainForHome;
+export default MainForProfile;
