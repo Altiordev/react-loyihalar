@@ -1,9 +1,14 @@
-import Router from './components/Router';
-import './App.css';
+import Bmi from './components/Bmi';
+import GitUsers from './components/GitUsers';
+import Gradus from './components/Gradus';
 
 function App() {
   return (    
-      <Router/>    
+    <>
+      <Bmi />
+      <Gradus />
+      <GitUsers />
+    </>
   );
 }
 
